@@ -1,2 +1,1 @@
-# Python-Automation-Cookbook
-Python Automation Cookbook, published by Packt
+# The code for this repository is under development :construction_worker:
