@@ -20,6 +20,7 @@ if __name__ == '__main__':
     if args.config:
         config = configparser.ConfigParser()
         config.read_file(args.config)
+        # Transforming values into integers
         args.n1 = int(config['DEFAULT']['n1'])
         args.n2 = int(config['DEFAULT']['n2'])
 
