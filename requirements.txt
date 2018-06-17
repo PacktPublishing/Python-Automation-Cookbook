@@ -1,3 +1,5 @@
 delorean==1.0.0
 requests==2.18.3
 parse==1.8.2
+beautifulsoup4==4.6.0
+feedparser==5.2.1
