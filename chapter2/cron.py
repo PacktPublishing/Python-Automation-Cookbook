@@ -6,11 +6,12 @@ import configparser
 
 def main(number, other_number, output):
     result = number * other_number
-    print(f'[{datetime.now()}] The result is {result}', file=output)
+    print(f'[{datetime.utcnow().isoformat()}] The result is {result}',
+          file=output)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-c', dest='config', type=argparse.FileType('r'),
                         help='config file',
                         default='/etc/automate.ini')

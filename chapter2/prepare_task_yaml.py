@@ -24,7 +24,7 @@ if __name__ == '__main__':
     if args.config:
         config = yaml.load(args.config)
         # Transforming values into integers
-        args.n1 = config['DEFAULT']['n1']
-        args.n2 = config['DEFAULT']['n2']
+        args.n1 = config['ARGUMENTS']['n1']
+        args.n2 = config['ARGUMENTS']['n2']
 
     main(args.n1, args.n2, args.output)
