@@ -6,7 +6,6 @@ import re
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
-URL = 'https://www.cs.vu.nl/~ast/'
 DEFAULT_PHRASE = 'scientist'
 
 
@@ -70,10 +69,13 @@ def main(base_url, to_search):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-u', type=str, help='Base site url',
-                        default=URL)
-    parser.add_argument('-p', type=str, help='Sentence to search',
+    parser.add_argument(dest='url', type=str,
+                        help='Base site url. '
+                              'Use  "https://www.cs.vu.nl/~ast/" '
+                              'for the recipe example')
+    parser.add_argument('-p', type=str,
+                        help=f'Sentence to search, default: {DEFAULT_PHRASE}',
                         default=DEFAULT_PHRASE)
     args = parser.parse_args()
 
-    main(args.u, args.p)
+    main(args.url, args.p)
