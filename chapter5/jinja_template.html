@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Movies Report</title>
+</head>
+<body>
+    <h1>Movies Report</h1>
+    <p>Date {{date}}</p>
+    <p>Movies seen in the last 30 days: {{movies|length}}</p>
+    <ol>
+        {% for movie in movies %}
+        <li>{{movie}}</li>
+        {% endfor %}
+    </ol>
+    <p>Total minutes: {{total_minutes}} </p>
+</body>
+</html>
