@@ -51,18 +51,15 @@ def create_watermark(watermarked_by):
     return watermark
 
 
-def main(in_pdf, out_pdf, watermarked_by, password):
-
-    watermark = create_watermark(watermarked_by)
-
+def apply_watermark(watermark, in_pdf, out_pdf):
     print('Watermarking the document')
     # Transform from PDF to images
     images = convert_from_path(in_pdf)
 
     # Get the location for the watermark
-    height, width = images[0].size
+    hi, wi = images[0].size
     hw, ww = watermark.size
-    position = ((height - hw) // 2, (width - ww) // 2)
+    position = ((hi - hw) // 2, (wi - ww) // 2)
 
     # Paste the watermark in each page
     for image in images:
@@ -70,6 +67,12 @@ def main(in_pdf, out_pdf, watermarked_by, password):
 
     # Save the resulting PDF
     images[0].save(out_pdf, save_all=True, append_images=images[1:])
+
+
+def main(in_pdf, out_pdf, watermarked_by, password):
+
+    watermark = create_watermark(watermarked_by)
+    apply_watermark(watermark, in_pdf, out_pdf)
 
     if password:
         encrypt(out_pdf, password)

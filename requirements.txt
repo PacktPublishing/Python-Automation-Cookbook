@@ -7,3 +7,7 @@ Pillow==5.1.0
 xmltodict==0.11.0
 PyPDF2==1.26.0
 python-docx==0.8.6
+jinja2==2.10
+mistune==0.8.3
+fpdf==1.7.2
+pdf2image==0.1.14
