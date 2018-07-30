@@ -33,7 +33,11 @@ def main(spreadsheet, script):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser('It inserts the macro file "script" '
+                                     'into the file "spreadsheet" in .ods '
+                                     'format. The resulting file is located '
+                                     f'in the {OUTPUT_DIR} directory, that '
+                                     'will be created')
     parser.add_argument(dest='spreadsheet', type=str,
                         help='File to insert the script')
     parser.add_argument(dest='script', type=str,
