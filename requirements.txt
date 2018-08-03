@@ -11,3 +11,5 @@ jinja2==2.10
 mistune==0.8.3
 fpdf==1.7.2
 pdf2image==0.1.14
+openpyxl==2.5.4
+matplotlib==2.2.2
