@@ -27,9 +27,9 @@ def send_phone_notification(entry, config):
 def send_email_notification(entry, config):
     KEY = config['MAILGUN']['KEY']
     DOMAIN = config['MAILGUN']['DOMAIN']
+    FROM = config['MAILGUN']['FROM']
     TO = entry['Target']
     name = entry['Name']
-    FROM = f'sender@{DOMAIN}'
     auth = ('api', KEY)
     coupon = entry['Code']
     text = f'Congrats! Here is a redeemable coupon! {coupon}'
