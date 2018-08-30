@@ -117,9 +117,10 @@ def graph(full_summary, products, temp_file, skip_labels=1):
     skip_labels: An optional number to skip labels, to improve
                  readability. Default 1 (show all)
     '''
-    # Display the sales by day
     pos = list(range(len(full_summary)))
-    units = [summary['units'] for day, summary in full_summary]
+    units = [summary['units'] for tag, summary in full_summary]
+    # Calculate the average discount
+    # discount = [summary['average_discount'] for tag, summary in full_summary]
 
     income_by_product = []
     units_per_product = []
@@ -157,6 +158,12 @@ def graph(full_summary, products, temp_file, skip_labels=1):
         plt.bar(pos, product, bottom=baseline)
 
     plt.legend([name for name, _, _ in income_by_product])
+
+    # Display a line with the average discount
+    # plt.twinx()
+    # plt.plot(pos, discount, 'o-', color='green')
+    # plt.ylabel('Average Discount')
+
     plt.xticks(pos[::skip_labels], labels[::skip_labels])
 
     max_units += 1
@@ -223,7 +230,7 @@ def main(input_file, output_file):
     data = [SaleLog.from_row([cell.value for cell in row])
             for row in islice(sheet, 1, None)]
 
-    # Generate a full summary, by day, and by shop
+    # Generate each of the pages: a full summary, graph by day, and by shop
     total_summary = generate_summary(data)
     products = total_summary['by_product'].keys()
     summary_by_day = aggregate_by_day(data)
@@ -256,8 +263,11 @@ def main(input_file, output_file):
 
 
 if __name__ == '__main__':
+    # Compile the input and output files from the command line
     parser = argparse.ArgumentParser()
     parser.add_argument(type=str, dest='input_file')
     parser.add_argument(type=str, dest='output_file')
     args = parser.parse_args()
+
+    # Call the main function
     main(args.input_file, args.output_file)
