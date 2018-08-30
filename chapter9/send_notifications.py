@@ -42,7 +42,6 @@ def send_email_notification(entry, config):
     }
     response = requests.post(f"https://api.mailgun.net/v3/{DOMAIN}/messages",
                              auth=auth, data=data)
-    breakpoint()
     if response.status_code == 200:
         return 'SENT'
 
