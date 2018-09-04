@@ -11,6 +11,7 @@ def valid(candidate):
     return True
 
 
+assert not valid(1)
 assert valid(3)
 assert not valid(15)
 assert not valid(18)
