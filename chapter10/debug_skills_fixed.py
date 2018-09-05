@@ -21,15 +21,23 @@ for name in NAMES:
         'custname': name,
     }
     # Request the name from the server
-    result = requests.get('http://httpbin.org/post', json=data)
+    # ERROR step 2. Using .get when it should be .post
+    # (old) result = requests.get('http://httpbin.org/post', json=data)
+    result = requests.post('http://httpbin.org/post', json=data)
     if result.status_code != 200:
         raise Exception(f'Error accessing server: {result}')
     # Obtain a raw name
-    raw_result = result.json()['data']
+    # ERROR Step 11. Obtain the value from a raw value. Use
+    # the decoded JSON instead
+    # raw_result = result.json()['data']
     # Extract the name from the result
-    full_name = parse.search('"custname": "{name}"', raw_result)['name']
+    # full_name = parse.search('"custname": "{name}"', raw_result)['name']
+    raw_result = result.json()['json']
+    full_name = raw_result['custname']
     # Split it into first name and last name
-    first_name, last_name = full_name.split()
+    # ERROR step 6. split only two words. Some names has middle names
+    # (old) first_name, last_name = full_name.split()
+    first_name, last_name = full_name.rsplit(maxsplit=1)
     ready_name = f'{last_name}, {first_name}'
     # Add the name in last_name, first_name format to the list
     sorted_names.append(ready_name)
