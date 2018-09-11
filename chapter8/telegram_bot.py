@@ -67,8 +67,12 @@ class MarketingBot(telepot.helper.ChatHandler):
         message = COMMANDS[command]()
         self.sender.sendMessage(message)
 
-    def on__idle(self, event):
+    def on_idle(self, event):
         self.close()
+
+    def on_close(self, event):
+        # Add any required cleanup here
+        pass
 
 
 # Create and start the bot
