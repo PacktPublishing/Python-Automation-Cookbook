@@ -48,10 +48,6 @@ def send_email_notification(entry, config):
     return 'ERROR'
 
 
-def invalid_method(entry, config):
-    return 'INVALID_METHOD'
-
-
 def send_notification(entry, send, config):
     if not send:
         return entry
@@ -61,8 +57,11 @@ def send_notification(entry, send, config):
         'PHONE': send_phone_notification,
         'EMAIL': send_email_notification,
     }
-    method = METHOD.get(entry['Contact Method'], invalid_method)
-    result = method(entry, config)
+    try:
+        method = METHOD[entry['Contact Method']]
+        result = method(entry, config)
+    except KeyError:
+        result = 'INVALID_METHOD'
 
     entry['Timestamp'] = delorean.utcnow().datetime.isoformat()
     entry['Status'] = result
