@@ -1,0 +1,7 @@
+Server this website with 
+
+    python3 simple_delay_server.py
+
+and then access in your browser
+
+    http://localhost:8000/

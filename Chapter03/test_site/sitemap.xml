@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>http://localhost:8000/index.html</loc>
+		<lastmod>2018-09-21</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/files/b93bec5d9681df87e6e8d5703ed7cd81-2.html</loc>
+		<lastmod>2018-09-21</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/files/5eabef23f63024c20389c34b94dee593-1.html</loc>
+		<lastmod>2018-09-21</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/files/33714fc865e02aeda2dabb9a42a787b2-0.html</loc>
+		<lastmod>2018-09-21</lastmod>
+	</url>
+	<url>
+		<loc>http://localhost:8000/files/archive-september-2018.html</loc>
+		<lastmod>2018-09-21</lastmod>
+	</url>
+</urlset>
