@@ -1,22 +1,25 @@
 import http.server
 import time
+import argparse
 
 PORT = 8000
 
-
-class DelayServer(http.server.SimpleHTTPRequestHandler):
-
-    def do_GET(self):
-        time.sleep(2)
-        super().do_GET()
-
-
-Handler = DelayServer
-
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', dest='delay', type=float, default=0.5,
+                        help='delay introduced for each request, in seconds')
+    args = parser.parse_args()
+    delay_time = args.delay
+
+    class DelayServer(http.server.SimpleHTTPRequestHandler):
+
+        def do_GET(self):
+            # Produce an artificial delay on each request
+            time.sleep(delay_time)
+            super().do_GET()
+
+    Handler = DelayServer
+
     server = http.server.ThreadingHTTPServer(('localhost', 8000), Handler)
     print('Starting server, use <Ctrl-C> to stop')
     server.serve_forever()
-# with socketserver.TCPServer(("", PORT), Handler) as httpd:
-#     print("serving at port", PORT)
-#     httpd.serve_forever()

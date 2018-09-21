@@ -3,10 +3,11 @@ import requests
 import logging
 import http.client
 import re
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 
-DEFAULT_PHRASE = 'scientist'
+
+DEFAULT_PHRASE = 'python'
 
 
 def process_link(source_link, text):
@@ -35,11 +36,19 @@ def get_links(parsed_source, page):
         if not link:
             continue
 
-        if parsed_source.netloc not in link:
+        # Avoid internal, same page links
+        if link.startswith('#'):
             continue
 
-        # Check that the link is a valid reference link
+        # Always accept local links
         if not link.startswith('http'):
+            netloc = parsed_source.netloc
+            scheme = parsed_source.scheme
+            path = urljoin(parsed_source.path, link)
+            link = f'{scheme}://{netloc}{path}'
+
+        # Only parse links in the same domain
+        if parsed_source.netloc not in link:
             continue
 
         links.append(link)
@@ -49,7 +58,7 @@ def get_links(parsed_source, page):
 
 def search_text(source_link, page, text):
     '''Search for an element with the searched text and print it'''
-    for element in page.find_all(text=re.compile(text)):
+    for element in page.find_all(text=re.compile(text, flags=re.IGNORECASE)):
         print(f'Link {source_link}: --> {element}')
 
 
@@ -62,8 +71,11 @@ def main(base_url, to_search):
         link = to_check.pop(0)
         links = process_link(link, text=to_search)
         checked_links.add(link)
-        to_check += [link for link in links
-                     if link not in checked_links]
+        for link in links:
+            if link not in checked_links:
+                checked_links.add(link)
+                to_check.append(link)
+
         max_checks -= 1
 
 
@@ -71,7 +83,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(dest='url', type=str,
                         help='Base site url. '
-                              'Use  "https://www.cs.vu.nl/~ast/" '
+                              'Use  "http://localhost:8000/" '
                               'for the recipe example')
     parser.add_argument('-p', type=str,
                         help=f'Sentence to search, default: {DEFAULT_PHRASE}',
