@@ -17,3 +17,8 @@ Fiona==1.7.13
 Shapely==1.6.4.post2
 twilio==6.16.3
 telepot==12.7
+
+
+
+Certain files will be created only after the steps are followed from the recipes.
+These files are not added in the repository.
