@@ -16,7 +16,7 @@ This book covers the following exciting features:
 * Discover the techniques required to generate random, print-friendly codes to be used  as single-use coupons
 * Automatically generate a marketing campaign, contacting the recipients over different  channels
 * Identify and implement precise solutions
-If you feel this book is for you, get your [copy](https://www.amazon.com/dp/) today!
+If you feel this book is for you, get your [copy](https://www.amazon.com/dp/B07F2L2CDC) today!
 
 <a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png" 
 alt="https://www.packtpub.com/" border="5" /></a>
@@ -41,7 +41,7 @@ The reader needs to know how to input commands in the command line (Terminal, Ba
 To understand the code in this book, you need a text editor, which will enable you to read and edit the code. You can use an IDE that supports the Python language, such as PyCharm and PyDev—which you choose is up to you. Check out this link for ideas about
 IDEs: https://realpython.com/python-ides-code-editors-guide/.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 3-5).
+With the following software and hardware list you can run all code files present in the book.
 ### Software and Hardware List
 | Chapter  | Software required                   | OS required                        |
 | -------- | ------------------------------------| -----------------------------------|
