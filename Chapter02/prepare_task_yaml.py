@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     if args.config:
-        config = yaml.load(args.config)
+        config = yaml.load(args.config, Loader=yaml.FullLoader)
         # Transforming values into integers
         args.n1 = config['ARGUMENTS']['n1']
         args.n2 = config['ARGUMENTS']['n2']
