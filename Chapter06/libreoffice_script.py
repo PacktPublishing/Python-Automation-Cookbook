@@ -1,7 +1,6 @@
 
 
 def ObtainAggregated(*args):
-    """Prints the Python version into the current document"""
     # get the doc from the scripting context
     # which is made available to all scripts
     desktop = XSCRIPTCONTEXT.getDesktop()
